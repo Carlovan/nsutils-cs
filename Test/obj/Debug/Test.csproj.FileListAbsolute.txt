@@ -1,0 +1,16 @@
+C:\Users\Giulio\Documents\Visual Studio 2013\Projects\NSUtils\Test\bin\Debug\Test.exe.config
+C:\Users\Giulio\Documents\Visual Studio 2013\Projects\NSUtils\Test\bin\Debug\Test.exe
+C:\Users\Giulio\Documents\Visual Studio 2013\Projects\NSUtils\Test\bin\Debug\Test.pdb
+C:\Users\Giulio\Documents\Visual Studio 2013\Projects\NSUtils\Test\bin\Debug\NSUtils.dll
+C:\Users\Giulio\Documents\Visual Studio 2013\Projects\NSUtils\Test\bin\Debug\NSUtils.pdb
+C:\Users\Giulio\Documents\Visual Studio 2013\Projects\NSUtils\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Users\Giulio\Documents\Visual Studio 2013\Projects\NSUtils\Test\obj\Debug\Test.exe
+C:\Users\Giulio\Documents\Visual Studio 2013\Projects\NSUtils\Test\obj\Debug\Test.pdb
+C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\Test\bin\Debug\Test.exe.config
+C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\Test\obj\Debug\Test.exe
+C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\Test\obj\Debug\Test.pdb
+C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\Test\bin\Debug\Test.exe
+C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\Test\bin\Debug\Test.pdb
+C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\Test\bin\Debug\NSUtils.dll
+C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\Test\bin\Debug\NSUtils.pdb
+C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache

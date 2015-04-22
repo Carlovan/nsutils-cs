@@ -1,0 +1,10 @@
+C:\Users\Giulio\Documents\Visual Studio 2013\Projects\NSUtils\NSUtils\obj\Debug\NSUtils.csprojResolveAssemblyReference.cache
+C:\Users\Giulio\Documents\Visual Studio 2013\Projects\NSUtils\NSUtils\bin\Debug\NSUtils.dll
+C:\Users\Giulio\Documents\Visual Studio 2013\Projects\NSUtils\NSUtils\bin\Debug\NSUtils.pdb
+C:\Users\Giulio\Documents\Visual Studio 2013\Projects\NSUtils\NSUtils\obj\Debug\NSUtils.dll
+C:\Users\Giulio\Documents\Visual Studio 2013\Projects\NSUtils\NSUtils\obj\Debug\NSUtils.pdb
+C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\NSUtils\bin\Debug\NSUtils.dll
+C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\NSUtils\bin\Debug\NSUtils.pdb
+C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\NSUtils\obj\Debug\NSUtils.csprojResolveAssemblyReference.cache
+C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\NSUtils\obj\Debug\NSUtils.dll
+C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\NSUtils\obj\Debug\NSUtils.pdb
