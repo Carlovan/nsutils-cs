@@ -19,6 +19,7 @@ namespace Test
 
 			t.Print();
 
+
             foreach (string x in t.GetAllWithPrefix("ci"))
             {
                 Console.WriteLine(x);
