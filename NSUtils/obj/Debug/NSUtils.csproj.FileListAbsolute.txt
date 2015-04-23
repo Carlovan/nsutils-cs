@@ -8,3 +8,8 @@ C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\NSUtils\bin\Debug\NSUti
 C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\NSUtils\obj\Debug\NSUtils.csprojResolveAssemblyReference.cache
 C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\NSUtils\obj\Debug\NSUtils.dll
 C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\NSUtils\obj\Debug\NSUtils.pdb
+C:\Users\francesco.mistri\Desktop\nsutils-cs\NSUtils\bin\Debug\NSUtils.dll
+C:\Users\francesco.mistri\Desktop\nsutils-cs\NSUtils\bin\Debug\NSUtils.pdb
+C:\Users\francesco.mistri\Desktop\nsutils-cs\NSUtils\obj\Debug\NSUtils.csprojResolveAssemblyReference.cache
+C:\Users\francesco.mistri\Desktop\nsutils-cs\NSUtils\obj\Debug\NSUtils.dll
+C:\Users\francesco.mistri\Desktop\nsutils-cs\NSUtils\obj\Debug\NSUtils.pdb

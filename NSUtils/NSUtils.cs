@@ -278,4 +278,19 @@ namespace NSUtils
 			return Regex.Replace(s, @"\s+", " ");
 		}
 	}
+
+    public static class NSMath
+    {
+        /// <summary>
+        /// Calculates the factorial of a number
+        /// </summary>
+        /// <param name="n">The number considered</param>
+        /// <returns>Returns the int factorial</returns>
+        public static int Fact(int n)             // Recursive function
+        {
+            if (n == 1)
+                return 1;
+            return n * Fact(n - 1);
+        }
+    }
 }

@@ -14,3 +14,11 @@ C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\Test\bin\Debug\Test.pdb
 C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\Test\bin\Debug\NSUtils.dll
 C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\Test\bin\Debug\NSUtils.pdb
 C:\Users\giulio.carlassare\Documents\Informatica\NSUtils\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Users\francesco.mistri\Desktop\nsutils-cs\Test\bin\Debug\Test.exe.config
+C:\Users\francesco.mistri\Desktop\nsutils-cs\Test\obj\Debug\Test.exe
+C:\Users\francesco.mistri\Desktop\nsutils-cs\Test\obj\Debug\Test.pdb
+C:\Users\francesco.mistri\Desktop\nsutils-cs\Test\bin\Debug\Test.exe
+C:\Users\francesco.mistri\Desktop\nsutils-cs\Test\bin\Debug\Test.pdb
+C:\Users\francesco.mistri\Desktop\nsutils-cs\Test\bin\Debug\NSUtils.dll
+C:\Users\francesco.mistri\Desktop\nsutils-cs\Test\bin\Debug\NSUtils.pdb
+C:\Users\francesco.mistri\Desktop\nsutils-cs\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache

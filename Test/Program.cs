@@ -11,9 +11,9 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            
 
-
+            Console.WriteLine(NSMath.Fact(3));
+            /*
             string[] l = { "ciao", "cacca", "cielo", "minestra", "ciaone"};
             PrefixTree t = new PrefixTree(l);
 
@@ -24,8 +24,9 @@ namespace Test
             {
                 Console.WriteLine(x);
             }
-
+            */
             Console.ReadKey();
+             
         }
     }
 }
