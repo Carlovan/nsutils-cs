@@ -201,7 +201,7 @@ namespace NSUtils
         /// <returns></returns>
         public string[] GetAll()
         {
-			var strings = getAll(0).ToArray();
+			var strings = getAll(0).Skip(1).ToArray();
 			for (int i = 0; i < strings.Length; i++)
 			{
 				strings[i] = strings[i].Substring(0, strings[i].Length - 1);
@@ -217,6 +217,9 @@ namespace NSUtils
         /// <returns></returns>
         public string[] GetAllWithPrefix(string prefix)
         {
+			if (prefix == "")
+				return GetAll();
+
             List<string> wordsFound = new List<string>();
 
             int nodeEnd = contained(0, prefix, true);
