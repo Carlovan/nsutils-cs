@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NSUtils
@@ -242,45 +244,45 @@ namespace NSUtils
 
     }
 
-	public static class NSString
-	{
-		public static string Capitalize(this string s)
-		{
-			s = s.ToLower();
-			s = s.Substring(0, 1).ToUpper() + s.Substring(1);
-			return s;
-		}
+    public static class NSString
+    {
+        public static string Capitalize(this string s)
+        {
+            s = s.ToLower();
+            s = s.Substring(0, 1).ToUpper() + s.Substring(1);
+            return s;
+        }
 
-		public static string CapitalizeWords(this string s, string separators=" \t\n")
-		{
-			bool inWord = false;
-			string temp = "";
-			for (int i = 0; i < s.Length; i++)
-			{
-				if (!separators.Contains(s[i]) && !inWord)
-				{
-					inWord = true;
-					temp += s[i].ToString().ToUpper();
-				}
-				else
-				{
-					temp += s[i];
-				}
+        public static string CapitalizeWords(this string s, string separators = " \t\n")
+        {
+            bool inWord = false;
+            string temp = "";
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!separators.Contains(s[i]) && !inWord)
+                {
+                    inWord = true;
+                    temp += s[i].ToString().ToUpper();
+                }
+                else
+                {
+                    temp += s[i];
+                }
 
-				if (separators.Contains(s[i]))
-				{
-					inWord = false;
-				}
-			}
+                if (separators.Contains(s[i]))
+                {
+                    inWord = false;
+                }
+            }
 
-			return temp;
-		}
+            return temp;
+        }
 
-		public static string TrimAndReduce(this string s)
-		{
-			return Regex.Replace(s, @"\s+", " ");
-		}
-	}
+        public static string TrimAndReduce(this string s)
+        {
+            return Regex.Replace(s, @"\s+", " ").Trim();
+        }
+    }
 
     public static class NSMath
     {
@@ -289,11 +291,67 @@ namespace NSUtils
         /// </summary>
         /// <param name="n">The number considered</param>
         /// <returns>Returns the int factorial</returns>
-        public static int Fact(int n)             // Recursive function
+        public static int Fact(int n)
         {
-            if (n == 1)
-                return 1;
-            return n * Fact(n - 1);
+            int fact=1;
+            for(int i=1;i<=n;i++)
+            {
+                fact *= i;
+            }
+            return fact;
+        }
+
+        /// <summary>
+        /// Calculates the (double) number converted from radians to degrees
+        /// </summary>
+        /// <param name="rad">The radians you want to convert</param>
+        /// <returns>Returns the converted (double) number</returns>
+        public static double Deg(double rad)
+        {
+            return rad * 180 / Math.PI;
+        }
+
+        /// <summary>
+        /// Calculates the (double) number converted from degrees to radians
+        /// </summary>
+        /// <param name="deg">The degrees you want to convert</param>
+        /// <returns>Returns the converted (double) number</returns>
+        public static double Rad(double deg)
+        {
+            return deg * Math.PI / 180;
+        }
+
+        /// <summary>
+        /// Finds a specific digit of a given number
+        /// </summary>
+        /// <param name="number">The given number</param>
+        /// <param name="digit">The one-based wanted digit position</param>
+        /// <returns>Returns the wanted digit</returns>
+        public static int Digit(this Double number, int digit)
+        {
+            if(number.ToString().IndexOf(",") >=0 )
+                return int.Parse(number.ToString().Replace(",", "")[digit-1].ToString());
+            return int.Parse(number.ToString().Replace(".", "")[digit - 1].ToString());
+        }
+
+        /// <summary>
+        /// Finds the first digit of a given number
+        /// </summary>
+        /// <param name="n">The given number</param>
+        /// <returns>Returns the first digit</returns>
+        public static int FirstDigit(this Double n)
+        {
+            return int.Parse(n.ToString()[0].ToString());
+        }
+
+        /// <summary>
+        /// Finds the last digit of a given number
+        /// </summary>
+        /// <param name="n">The given number</param>
+        /// <returns>Returns the last digit</returns>
+        public static int LastDigit(this Double n)
+        {
+            return int.Parse(n.ToString()[n.ToString().Length-1].ToString());
         }
     }
 }
