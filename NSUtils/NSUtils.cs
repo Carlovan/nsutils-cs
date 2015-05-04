@@ -353,5 +353,15 @@ namespace NSUtils
         {
             return int.Parse(n.ToString()[n.ToString().Length-1].ToString());
         }
+
+        /// <summary>
+        /// Finds the logarith (base 2) of the given number
+        /// </summary>
+        /// <param name="n">Number used as log argument</param>
+        /// <returns>Returns the logarithm(base 2) of the given number</returns>
+        public static double Log2(double n)
+        {
+            return (Math.Log(n) / Math.Log(2));
+        }
     }
 }
