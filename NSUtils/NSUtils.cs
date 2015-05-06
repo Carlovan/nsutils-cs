@@ -364,4 +364,52 @@ namespace NSUtils
             return (Math.Log(n) / Math.Log(2));
         }
     }
+
+    public class Bin
+    {
+        static string bits;
+
+        public Bin(double wholeBinary)
+        {
+            int wholePart = (int)wholeBinary;
+            double fractionalPart = wholeBinary - (double)wholePart;
+            string binary = Convert.ToString(wholePart, 2);
+
+            List<String> result = CalculateFractionalBinary(fractionalPart);
+            bits = binary+string.Join("", result.ToArray());
+        }
+
+        public static List<String> CalculateFractionalBinary(double fractionalPart)
+        {
+            List<String> digitList = new List<String>(0);
+            double nextProduct = 0.00;
+            double nextFraction = fractionalPart;
+
+            digitList.Add(".");
+
+            while (nextFraction != 0.00 && digitList.Count < 100)
+            {
+                nextProduct = nextFraction * 2;
+                if (nextProduct > 1.00)
+                {
+                    digitList.Add("1");
+                    nextFraction = nextProduct - 1.00;
+                }
+                else
+                {
+                    digitList.Add("0");
+                    nextFraction = nextProduct;
+                }
+            }
+
+            return digitList;
+        }
+        public static string String(Bin n)
+        {
+            string s = "";
+            for (int i = 0; i < bits.Length; i++)
+                s += bits[i];
+            return s;
+        }
+    }
 }
