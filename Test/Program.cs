@@ -12,8 +12,15 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Bin binary = new Bin(64.23);
-            Console.WriteLine(Bin.String(binary));
+            Bin n1 = new Bin(100);
+            Bin n2 = new Bin(1);
+            Bin n3 = new Bin(10);
+            int n = 5;
+
+            Console.WriteLine(n3+n2*n1);
+            
+
+            Console.ReadKey();
         }
     }
 }

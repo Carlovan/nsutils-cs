@@ -282,6 +282,24 @@ namespace NSUtils
         {
             return Regex.Replace(s, @"\s+", " ").Trim();
         }
+
+        public static string Reverse(this String s)
+        {
+            char[] c = s.ToCharArray(0, s.Length);
+
+            for(int i=0;i<s.Length/2;i++)
+            {
+                char tmp = c[i];
+                c[i] = c[s.Length - 1 - i];
+                c[s.Length - 1 - i] = tmp;
+            }
+
+            s = "";
+            for (int i = 0; i < c.Length; i++)
+                s += c[i];
+
+            return s;
+        }
     }
 
     public static class NSMath
@@ -367,49 +385,53 @@ namespace NSUtils
 
     public class Bin
     {
-        static string bits;
-
-        public Bin(double wholeBinary)
+        private int bits;
+        public int Length { get { return bits.ToString().Length; } } 
+        public Bin(int binaryCode)
         {
-            int wholePart = (int)wholeBinary;
-            double fractionalPart = wholeBinary - (double)wholePart;
-            string binary = Convert.ToString(wholePart, 2);
-
-            List<String> result = CalculateFractionalBinary(fractionalPart);
-            bits = binary+string.Join("", result.ToArray());
+            this.bits = binaryCode;
         }
-
-        public static List<String> CalculateFractionalBinary(double fractionalPart)
+        public override string ToString()
         {
-            List<String> digitList = new List<String>(0);
-            double nextProduct = 0.00;
-            double nextFraction = fractionalPart;
-
-            digitList.Add(".");
-
-            while (nextFraction != 0.00 && digitList.Count < 100)
-            {
-                nextProduct = nextFraction * 2;
-                if (nextProduct > 1.00)
-                {
-                    digitList.Add("1");
-                    nextFraction = nextProduct - 1.00;
-                }
-                else
-                {
-                    digitList.Add("0");
-                    nextFraction = nextProduct;
-                }
-            }
-
-            return digitList;
+            return this.bits.ToString();
         }
-        public static string String(Bin n)
+        public static int ToInt(Bin bin)
+        {
+            return bin.bits;
+        }
+        static public Bin operator +(Bin bin1, Bin bin2)
+        {
+            return new Bin((Bin.ToInt(bin1).ToDecimal() + Bin.ToInt(bin2).ToDecimal()).ToBinary());
+        }
+        static public Bin operator *(Bin bin1, Bin bin2)
+        {
+            return new Bin((Bin.ToInt(bin1).ToDecimal() * Bin.ToInt(bin2).ToDecimal()).ToBinary());
+        }
+    }
+
+    public static class Convert
+    {
+        /// <summary>
+        /// Converts an int Decimal number to a Binary decimal one
+        /// </summary>
+        /// <param name="dec">The Decimal number to convert</param>
+        /// <returns>Returns the int Binary number(the converted Decimal one)</returns>
+        public static int ToBinary(this int dec)
         {
             string s = "";
-            for (int i = 0; i < bits.Length; i++)
-                s += bits[i];
-            return s;
+            while(dec != 0)
+            {
+                s += (dec % 2).ToString();
+                dec/=2;
+            }
+            return int.Parse(s.Reverse());
+        }
+        public static int ToDecimal(this int bin)
+        {
+            int summ = 0;
+            for (int i = bin.ToString().Length - 1; i >= 0; i--)
+                summ += (bin.ToString()[i] == '1') ? (int)Math.Pow(2, bin.ToString().Length - 1 - i) : 0;
+            return summ;
         }
     }
 }
