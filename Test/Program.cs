@@ -12,13 +12,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            int n = 64;
-            Console.WriteLine(Math.PI.FirstDigit());
-            Console.WriteLine(((double)n).LastDigit());
-            Console.WriteLine(NSMath.Log2(2));
             
-            Console.ReadKey();
-             
         }
     }
 }

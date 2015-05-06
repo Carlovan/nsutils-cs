@@ -83,13 +83,13 @@ namespace NSUtils
         /// <summary>
         /// Constructor
         /// </summary>
-        public PrefixTree() : this(new string[0]) {}
+        public PrefixTree() : this(new string[0]) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="word">A word to put into the tree</param>
-        public PrefixTree(string word) : this(new string[] {word}) {}
+        public PrefixTree(string word) : this(new string[] { word }) { }
 
 
         private int contained(int node, string word, bool prefix)
@@ -157,7 +157,7 @@ namespace NSUtils
         /// <param name="word">Word to add</param>
         public void Add(string word)
         {
-            addWord(0, word+'\0');
+            addWord(0, word + '\0');
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace NSUtils
         /// </summary>
         public void Print()
         {
-            for(int j = 0; j < tree.Count; j++)
+            for (int j = 0; j < tree.Count; j++)
             {
                 SortedDictionary<char, int> d = tree[j];
                 Console.Write("{0}-> ", j);
@@ -184,7 +184,7 @@ namespace NSUtils
         /// <returns></returns>
         public bool Contains(string word)
         {
-            return contained(0, word+'\0', false) != -1;
+            return contained(0, word + '\0', false) != -1;
         }
 
         /// <summary>
@@ -203,12 +203,12 @@ namespace NSUtils
         /// <returns></returns>
         public string[] GetAll()
         {
-			var strings = getAll(0).Skip(1).ToArray();
-			for (int i = 0; i < strings.Length; i++)
-			{
-				strings[i] = strings[i].Substring(0, strings[i].Length - 1);
-			}
-			return strings;
+            var strings = getAll(0).Skip(1).ToArray();
+            for (int i = 0; i < strings.Length; i++)
+            {
+                strings[i] = strings[i].Substring(0, strings[i].Length - 1);
+            }
+            return strings;
         }
 
 
@@ -219,8 +219,8 @@ namespace NSUtils
         /// <returns></returns>
         public string[] GetAllWithPrefix(string prefix)
         {
-			if (prefix == "")
-				return GetAll();
+            if (prefix == "")
+                return GetAll();
 
             List<string> wordsFound = new List<string>();
 
@@ -233,13 +233,13 @@ namespace NSUtils
                 }
             }
 
-			var strings = wordsFound.ToArray();
-			for(int i  = 0; i < strings.Length; i++)
-			{
-				strings[i] = strings[i].Substring(0, strings[i].Length-1);
-			}
+            var strings = wordsFound.ToArray();
+            for (int i = 0; i < strings.Length; i++)
+            {
+                strings[i] = strings[i].Substring(0, strings[i].Length - 1);
+            }
 
-			return strings;
+            return strings;
         }
 
     }
@@ -293,8 +293,8 @@ namespace NSUtils
         /// <returns>Returns the int factorial</returns>
         public static int Fact(int n)
         {
-            int fact=1;
-            for(int i=1;i<=n;i++)
+            int fact = 1;
+            for (int i = 1; i <= n; i++)
             {
                 fact *= i;
             }
@@ -329,8 +329,8 @@ namespace NSUtils
         /// <returns>Returns the wanted digit</returns>
         public static int Digit(this Double number, int digit)
         {
-            if(number.ToString().IndexOf(",") >=0 )
-                return int.Parse(number.ToString().Replace(",", "")[digit-1].ToString());
+            if (number.ToString().IndexOf(",") >= 0)
+                return int.Parse(number.ToString().Replace(",", "")[digit - 1].ToString());
             return int.Parse(number.ToString().Replace(".", "")[digit - 1].ToString());
         }
 
@@ -351,7 +351,7 @@ namespace NSUtils
         /// <returns>Returns the last digit</returns>
         public static int LastDigit(this Double n)
         {
-            return int.Parse(n.ToString()[n.ToString().Length-1].ToString());
+            return int.Parse(n.ToString()[n.ToString().Length - 1].ToString());
         }
 
         /// <summary>
