@@ -12,7 +12,16 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            
+            BinaryHeap b = new BinaryHeap(new int[]{2, 8, 6, 15, 7, 5, 4, 3, 1});
+            b.Print();
+
+            b.Push(20);
+            Console.WriteLine();
+
+            b.Print();
+
+
+            Console.ReadKey();
         }
     }
 }

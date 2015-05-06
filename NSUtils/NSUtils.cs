@@ -364,4 +364,97 @@ namespace NSUtils
             return (Math.Log(n) / Math.Log(2));
         }
     }
+
+    public class BinaryHeap
+    {
+        List<int> tree;
+        int Count;
+
+        public BinaryHeap()
+        {
+            tree = new List<int>();
+            Count = 0;
+        }
+
+        public BinaryHeap(int[] elements)
+        {
+            tree = new List<int>(elements);
+            Count = tree.Count;
+            Console.WriteLine("count {0}", Count);
+            balance();
+        }
+
+        public int Top()
+        {
+            return tree[0];
+        }
+
+        public void Pop()
+        {
+            tree[0] = 0;
+            balance();
+            Count--;
+        }
+
+        public void Push(int n)
+        {
+            if (Count == tree.Count)
+                tree.Add(n);
+            else
+                tree[Count] = n;
+            Count++;
+
+            balance();
+        }
+
+        private void balance()
+        {
+            for (int i = Count-1; i >= 0; i--)
+            {
+                heapify(i);
+            }
+        }
+
+        private void heapify(int n)
+        {
+            int temp;
+
+            int max = tree[n];
+            if (2 * n + 1 < Count)
+                max = Math.Max(max, tree[2 * n + 1]);
+            if (2 * n + 2 < Count)
+                max = Math.Max(max, tree[2 * n + 2]);
+
+            if (max == tree[n])
+                return;
+
+            if (max == tree[2 * n + 1])
+            {
+                temp = tree[n];
+                tree[n] = tree[2 * n + 1];
+                tree[2 * n + 1] = temp;
+
+                heapify(2 * n + 1);
+                return;
+            }
+
+            temp = tree[n];
+            tree[n] = tree[2 * n + 2];
+            tree[2 * n + 2] = temp;
+            heapify(2 * n + 2);
+        }
+
+        public void Print()
+        {
+            for (int i = 0, m = 1; i < Count; m*=2)
+            {
+                int t = i;
+                for (; i < t + m && i < Count; i++)
+                {
+                    Console.Write("{0} ", tree[i]);
+                }
+                Console.WriteLine();
+            }
+        }
+    }
 }
