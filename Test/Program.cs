@@ -12,8 +12,11 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Bin a = new Bin(Console.ReadLine());
-            Console.Write(a);
+            Bin a = new Bin(NSConsole.ReadLine("Inserisci un numero binario:\t"));
+            Console.WriteLine(a);
+            Console.WriteLine("Numero bit:\t\t"+a.Length);
+            Console.WriteLine("Conversione decimale:\t" + Bin.ToInt(a));
+            
             Console.ReadKey();
         }
     }
