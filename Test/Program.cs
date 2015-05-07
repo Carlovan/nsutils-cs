@@ -16,7 +16,7 @@ namespace Test
 		}
         static void Main(string[] args)
         {
-            BinaryHeap<string> b = new BinaryHeap<string>(new string[]{"d", "e", "a", "z"}, BinaryHeap<string>.Max);
+            BinaryHeap<int> b = new BinaryHeap<int>(new int[]{1, 5, 3, 9, 19, 5, 3});
 
 			b.Print();
 			Console.WriteLine();

@@ -45,7 +45,16 @@ namespace NSUtils
 				tree[Count] = n;
 			Count++;
 
-			balance();
+            for (int i = Count - 1; i > 0; i = (i - 1) / 2)
+            {
+                if (!comparator(tree[(i - 1) / 2], tree[i]))
+                {
+                    break;
+                }
+                T temp = tree[i];
+                tree[i] = tree[(i - 1) / 2];
+                tree[(i - 1) / 2] = temp;
+            }
 		}
 
 		public bool IsEmpty()
@@ -65,7 +74,7 @@ namespace NSUtils
 
 		private void balance()
 		{
-			for (int i = Count - 1; i >= 0; i--)
+			for (int i = Count / 2 - 1; i >= 0; i--)
 			{
 				heapify(i);
 			}
