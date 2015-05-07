@@ -12,7 +12,22 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            
+            Bin n1 = new Bin(NSConsole.ReadLine("Inserisci un numero binario:\t"));
+            Bin mult = new Bin(2);
+
+            Console.WriteLine("Numero inserito(bin):\t{0}", n1);
+            Console.WriteLine("Numero inserito(dec):\t{0}", Bin.ToInt(n1).ToDecimal());
+
+            Bin p = n1 * mult;
+            Console.WriteLine("n * 2 =\t\t{0}", p);
+
+            p = n1 / mult;
+            Console.WriteLine("n / 2 =\t\t{0}", p);
+
+            Console.WriteLine((n1 > p) ? "Un numero è maggiore della sua metà..." : "");
+            Console.WriteLine((n1 == n1) ? "Un numero è uguale a se stesso MA VA" : "");
+
+            Console.ReadKey();
         }
     }
 }

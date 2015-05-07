@@ -83,13 +83,13 @@ namespace NSUtils
         /// <summary>
         /// Constructor
         /// </summary>
-        public PrefixTree() : this(new string[0]) { }
+        public PrefixTree() : this(new string[0]) {}
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="word">A word to put into the tree</param>
-        public PrefixTree(string word) : this(new string[] { word }) { }
+        public PrefixTree(string word) : this(new string[] {word}) {}
 
 
         private int contained(int node, string word, bool prefix)
@@ -157,7 +157,7 @@ namespace NSUtils
         /// <param name="word">Word to add</param>
         public void Add(string word)
         {
-            addWord(0, word + '\0');
+            addWord(0, word+'\0');
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace NSUtils
         /// </summary>
         public void Print()
         {
-            for (int j = 0; j < tree.Count; j++)
+            for(int j = 0; j < tree.Count; j++)
             {
                 SortedDictionary<char, int> d = tree[j];
                 Console.Write("{0}-> ", j);
@@ -184,7 +184,7 @@ namespace NSUtils
         /// <returns></returns>
         public bool Contains(string word)
         {
-            return contained(0, word + '\0', false) != -1;
+            return contained(0, word+'\0', false) != -1;
         }
 
         /// <summary>
@@ -203,12 +203,12 @@ namespace NSUtils
         /// <returns></returns>
         public string[] GetAll()
         {
-            var strings = getAll(0).Skip(1).ToArray();
-            for (int i = 0; i < strings.Length; i++)
-            {
-                strings[i] = strings[i].Substring(0, strings[i].Length - 1);
-            }
-            return strings;
+			var strings = getAll(0).Skip(1).ToArray();
+			for (int i = 0; i < strings.Length; i++)
+			{
+				strings[i] = strings[i].Substring(0, strings[i].Length - 1);
+			}
+			return strings;
         }
 
 
@@ -219,8 +219,8 @@ namespace NSUtils
         /// <returns></returns>
         public string[] GetAllWithPrefix(string prefix)
         {
-            if (prefix == "")
-                return GetAll();
+			if (prefix == "")
+				return GetAll();
 
             List<string> wordsFound = new List<string>();
 
@@ -233,13 +233,13 @@ namespace NSUtils
                 }
             }
 
-            var strings = wordsFound.ToArray();
-            for (int i = 0; i < strings.Length; i++)
-            {
-                strings[i] = strings[i].Substring(0, strings[i].Length - 1);
-            }
+			var strings = wordsFound.ToArray();
+			for(int i  = 0; i < strings.Length; i++)
+			{
+				strings[i] = strings[i].Substring(0, strings[i].Length-1);
+			}
 
-            return strings;
+			return strings;
         }
 
     }
@@ -282,6 +282,24 @@ namespace NSUtils
         {
             return Regex.Replace(s, @"\s+", " ").Trim();
         }
+
+        public static string Reverse(this String s)
+        {
+            char[] c = s.ToCharArray(0, s.Length);
+
+            for(int i=0;i<s.Length/2;i++)
+            {
+                char tmp = c[i];
+                c[i] = c[s.Length - 1 - i];
+                c[s.Length - 1 - i] = tmp;
+            }
+
+            s = "";
+            for (int i = 0; i < c.Length; i++)
+                s += c[i];
+
+            return s;
+        }
     }
 
     public static class NSMath
@@ -293,8 +311,8 @@ namespace NSUtils
         /// <returns>Returns the int factorial</returns>
         public static int Fact(int n)
         {
-            int fact = 1;
-            for (int i = 1; i <= n; i++)
+            int fact=1;
+            for(int i=1;i<=n;i++)
             {
                 fact *= i;
             }
@@ -329,8 +347,8 @@ namespace NSUtils
         /// <returns>Returns the wanted digit</returns>
         public static int Digit(this Double number, int digit)
         {
-            if (number.ToString().IndexOf(",") >= 0)
-                return int.Parse(number.ToString().Replace(",", "")[digit - 1].ToString());
+            if(number.ToString().IndexOf(",") >=0 )
+                return int.Parse(number.ToString().Replace(",", "")[digit-1].ToString());
             return int.Parse(number.ToString().Replace(".", "")[digit - 1].ToString());
         }
 
@@ -351,7 +369,7 @@ namespace NSUtils
         /// <returns>Returns the last digit</returns>
         public static int LastDigit(this Double n)
         {
-            return int.Parse(n.ToString()[n.ToString().Length - 1].ToString());
+            return int.Parse(n.ToString()[n.ToString().Length-1].ToString());
         }
 
         /// <summary>
@@ -362,6 +380,195 @@ namespace NSUtils
         public static double Log2(double n)
         {
             return (Math.Log(n) / Math.Log(2));
+        }
+    }
+
+    public class Bin
+    {
+        private int bits;
+
+        /// <summary>
+        /// The number of bits of the binary number
+        /// </summary>
+        public int Length { get { return bits.ToString().Length; } } 
+
+        /// <summary>
+        /// Constructor for the Bin class
+        /// </summary>
+        /// <param name="decimalNumber">The decimal number inserted that will be converted automatically into a binary one</param>
+        public Bin(int decimalNumber)
+        {
+            this.bits = decimalNumber;
+        }
+
+        /// <summary>
+        /// Constructor for the Bin class
+        /// </summary>
+        /// <param name="binaryCode">The binary code (1s and 0s) that will be interpreted</param>
+        public Bin(string binaryCode)
+        {
+            bool ok = true;
+            for (int i = 0; i < binaryCode.Length&&ok;i++ )
+            {
+                ok = false;
+                if (binaryCode[i] == '0' || binaryCode[i] == '1')
+                    ok = true;
+            }
+            if (ok)
+                this.bits = int.Parse(binaryCode).ToDecimal();
+            else
+                throw new ArgumentException("The Bin class constructor requires a string of 1s and 0s or an int");
+        }
+
+        /// <summary>
+        /// Allows the cast binary-string
+        /// </summary>
+        /// <returns>Returns the string of the binary code</returns>
+        public override string ToString()
+        {
+            return this.bits.ToBinary().ToString();
+        }
+
+        /// <summary>
+        /// Allows the cast binary-int
+        /// </summary>
+        /// <param name="bin">The Bin instance to be converted</param>
+        /// <returns>Returns an int containing the binary code</returns>
+        public static int ToInt(Bin bin)
+        {
+            return bin.bits.ToBinary();
+        }
+
+        /// <summary>
+        /// Allows the summ of 2 or more Bin objects
+        /// </summary>
+        static public Bin operator +(Bin bin1, Bin bin2)
+        {
+            return new Bin(Bin.ToInt(bin1).ToDecimal() + Bin.ToInt(bin2).ToDecimal());
+        }
+
+        /// <summary>
+        /// Allows the subtraction of 2 or more Bin objects
+        /// </summary>
+        static public Bin operator *(Bin bin1, Bin bin2)
+        {
+            return new Bin(Bin.ToInt(bin1).ToDecimal() * Bin.ToInt(bin2).ToDecimal());
+        }
+
+        /// <summary>
+        /// Allows the division of 2 or more Bin objects(No floating point)
+        /// </summary>
+        static public Bin operator /(Bin bin1, Bin bin2)
+        {
+            return new Bin(Bin.ToInt(bin1).ToDecimal() / Bin.ToInt(bin2).ToDecimal());
+        }
+
+        /// <summary>
+        /// Allows the product of 2 or more Bin objects
+        /// </summary>
+        static public Bin operator -(Bin bin1, Bin bin2)
+        {
+            return new Bin(Bin.ToInt(bin1).ToDecimal() - Bin.ToInt(bin2).ToDecimal());
+        }
+
+        /// <summary>
+        /// Standard Equals method
+        /// </summary>
+        public override bool Equals(object obj)
+        {
+            var bin = obj as Bin;
+            if (bin == null)
+                return false;
+
+            return this.bits.Equals(bin.bits);
+        }
+
+        /// <summary>
+        /// standard HashCode method
+        /// </summary>
+        public override int GetHashCode()
+        {
+            return this.bits.GetHashCode();
+        }
+
+        /// <summary>
+        /// Checks if two Bin objects are equals
+        /// </summary>
+        static public bool operator ==(Bin bin1, Bin bin2)
+        {
+            return Bin.ToInt(bin1) == Bin.ToInt(bin2);
+        }
+
+        /// <summary>
+        /// Checks if two Bin objects aren't equals
+        /// </summary>
+        static public bool operator !=(Bin bin1, Bin bin2)
+        {
+            return Bin.ToInt(bin1) != Bin.ToInt(bin2);
+        }
+
+        /// <summary>
+        /// Checks if one Bin is greater than a second one
+        /// </summary>
+        static public bool operator >(Bin bin1, Bin bin2)
+        {
+            return Bin.ToInt(bin1) > Bin.ToInt(bin2);
+        }
+
+        /// <summary>
+        /// Checks if one Bin is greater or equal to a second one
+        /// </summary>
+        static public bool operator >=(Bin bin1, Bin bin2)
+        {
+            return Bin.ToInt(bin1) >= Bin.ToInt(bin2);
+        }
+
+        /// <summary>
+        /// Checks if one Bin is greater than a second one
+        /// </summary>
+        static public bool operator <(Bin bin1, Bin bin2)
+        {
+            return Bin.ToInt(bin1) < Bin.ToInt(bin2);
+        }
+
+        /// <summary>
+        /// Checks if one Bin is lower or equal to a second one
+        /// </summary>
+        static public bool operator <=(Bin bin1, Bin bin2)
+        {
+            return Bin.ToInt(bin1) <= Bin.ToInt(bin2);
+        }
+    }
+
+    public static class Convert
+    {
+        /// <summary>
+        /// Converts an int Decimal number to a Binary decimal one
+        /// </summary>
+        /// <param name="dec">The Decimal number to convert</param>
+        /// <returns>Returns the int Binary number(the converted Decimal one)</returns>
+        public static int ToBinary(this int dec)
+        {
+            string s = "";
+            while(dec != 0)
+            {
+                s += (dec % 2).ToString();
+                dec/=2;
+            }
+            return int.Parse(s.Reverse());
+        }
+
+        /// <summary>
+        /// Converts an int Binary number to a Decimal decimal one
+        /// </summary>
+        /// <param name="bin">The Binary number to convert</param>
+        /// <returns>Returns the int Decimal number(the converted Decimal one)</returns>
+        public static int ToDecimal(this int bin)
+        {
+            int summ = 0;
+            for (int i = bin.ToString().Length - 1; i >= 0; i--)
+                summ += (bin.ToString()[i] == '1') ? (int)Math.Pow(2, bin.ToString().Length - 1 - i) : 0;
+            return summ;
         }
     }
 }
