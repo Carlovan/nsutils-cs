@@ -19,7 +19,7 @@ namespace Test
             BinaryHeap<int> b = new BinaryHeap<int>(new int[]{1, 5, 3, 9, 19, 5, 3});
 
 			b.Print();
-			Console.WriteLine();
+			Console.WriteLine("Count = {0}", b.Count);
 			while (!b.IsEmpty())
 			{
 				Console.WriteLine(b.Top());
