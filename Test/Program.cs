@@ -27,6 +27,9 @@ namespace Test
             Console.WriteLine((n1 > p) ? "Un numero è maggiore della sua metà..." : "");
             Console.WriteLine((n1 == n1) ? "Un numero è uguale a se stesso MA VA" : "");
 
+            Console.WriteLine("\nMSB of 1010 = {0}", NSMath.MostSignificantBit(10));
+            Console.WriteLine("\nLSB of 1010 = {0}", NSMath.LeastSignificantBit(10));
+
             Console.ReadKey();
         }
     }

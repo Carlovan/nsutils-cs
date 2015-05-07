@@ -88,5 +88,47 @@ namespace NSUtils
         {
             return (Math.Log(n) / Math.Log(2));
         }
+
+        /// <summary>
+        /// Returns the least significant bit of a number.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static int LeastSignificantBit(int n)
+        {
+            return (int)LeastSignificantBit((long)n);
+        }
+
+        /// <summary>
+        /// Returns the least significant bit of a number. 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static long LeastSignificantBit(long n)
+        {
+            return n & -n;
+        }
+
+        /// <summary>
+        /// Returns the most significant bit of a number.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static int MostSignificantBit(int n)
+        {
+            return (int)MostSignificantBit((long)n);
+        }
+
+        /// <summary>
+        /// Returns the most significant bit of a number.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static long MostSignificantBit(long n)
+        {
+            long val = 1;
+            for (; n > 0; n >>= 1, val <<= 1) ;
+            return val >> 1;
+        }
     }
 }
