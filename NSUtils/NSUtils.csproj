@@ -39,7 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NSUtils.cs" />
+    <Compile Include="BinaryHeap.cs" />
+    <Compile Include="NSConsole.cs" />
+    <Compile Include="NSMath.cs" />
+    <Compile Include="NSString.cs" />
+    <Compile Include="PrefixTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

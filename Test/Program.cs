@@ -10,16 +10,21 @@ namespace Test
 {
     class Program
     {
+		static bool comp(int a, int b)
+		{
+			return a % 2 == 0 ^ b % 2 == 0;
+		}
         static void Main(string[] args)
         {
-            BinaryHeap b = new BinaryHeap(new int[]{2, 8, 6, 15, 7, 5, 4, 3, 1});
-            b.Print();
+            BinaryHeap<string> b = new BinaryHeap<string>(new string[]{"d", "e", "a", "z"}, BinaryHeap<string>.Max);
 
-            b.Push(20);
-            Console.WriteLine();
-
-            b.Print();
-
+			b.Print();
+			Console.WriteLine();
+			while (!b.IsEmpty())
+			{
+				Console.WriteLine(b.Top());
+				b.Pop();
+			}
 
             Console.ReadKey();
         }
