@@ -10,6 +10,8 @@ namespace Test
 {
     class Program
     {
+        static bool comp(int a, int b)		{
+			return a % 2 == 0 ^ b % 2 == 0;		}
         static void Main(string[] args)
         {
             Bin n1 = new Bin(NSConsole.ReadLine("Inserisci un numero binario:\t"));
@@ -29,6 +31,16 @@ namespace Test
 
             Console.WriteLine("\nMSB of 1010 = {0}", NSMath.MostSignificantBit(10));
             Console.WriteLine("\nLSB of 1010 = {0}", NSMath.LeastSignificantBit(10));
+
+
+            BinaryHeap<int> b = new BinaryHeap<int>(new int[] { 1, 5, 3, 9, 19, 5, 3 });
+            b.Print();
+            Console.WriteLine("Count = {0}", b.Count);
+            while (!b.IsEmpty)
+            {
+                Console.WriteLine(b.Top());
+                b.Pop();
+            }
 
             Console.ReadKey();
         }
