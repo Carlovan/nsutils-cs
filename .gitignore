@@ -2,3 +2,5 @@ NSUtils/bin/
 NSUtils/obj/
 Test/bin/
 Test/obj/
+NSUtils/*.TMP
+Test/*.TMP

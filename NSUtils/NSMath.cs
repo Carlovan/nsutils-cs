@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
@@ -80,7 +80,7 @@ namespace NSUtils
         }
 
         /// <summary>
-        /// Finds the logarith (base 2) of the given number
+        /// Finds the logarithm (base 2) of the given number
         /// </summary>
         /// <param name="n">Number used as log argument</param>
         /// <returns>Returns the logarithm(base 2) of the given number</returns>
@@ -132,3 +132,4 @@ namespace NSUtils
         }
     }
 }
+

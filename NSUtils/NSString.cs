@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NSUtils
 {
-public static class NSString
+    public static class NSString
     {
         public static string Capitalize(this string s)
         {
@@ -52,7 +52,7 @@ public static class NSString
         {
             char[] c = s.ToCharArray(0, s.Length);
 
-            for(int i=0;i<s.Length/2;i++)
+            for (int i = 0; i < s.Length / 2; i++)
             {
                 char tmp = c[i];
                 c[i] = c[s.Length - 1 - i];

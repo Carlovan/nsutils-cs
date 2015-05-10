@@ -1,22 +1,46 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Globalization;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace NSUtils
 {
     public class Bin
     {
-        private int bits;
+        protected long bits;
 
         /// <summary>
         /// The number of bits of the binary number
         /// </summary>
-        public int Length { get { return bits.ToString().Length; } } 
+        public long Length { get { return Bin.ConvertToBinary(this.bits).Length; } }
+
+        /// <summary>
+        /// Constructor for the Bin class
+        /// </summary>
+        /// <param name="decimalNumber">The decimal number inserted that will be converted automatically into a binary one</param>
+        public Bin(byte decimalNumber)
+        {
+            this.bits = decimalNumber;
+        }
+
+        /// <summary>
+        /// Constructor for the Bin class
+        /// </summary>
+        /// <param name="decimalNumber">The decimal number inserted that will be converted automatically into a binary one</param>
+        public Bin(char decimalNumber)
+        {
+            this.bits = decimalNumber;
+        }
+
+        /// <summary>
+        /// Constructor for the Bin class
+        /// </summary>
+        /// <param name="decimalNumber">The decimal number inserted that will be converted automatically into a binary one</param>
+        public Bin(short decimalNumber)
+        {
+            this.bits = decimalNumber;
+        }
 
         /// <summary>
         /// Constructor for the Bin class
@@ -30,20 +54,100 @@ namespace NSUtils
         /// <summary>
         /// Constructor for the Bin class
         /// </summary>
+        /// <param name="decimalNumber">The decimal number inserted that will be converted automatically into a binary one</param>
+        public Bin(long decimalNumber)
+        {
+            this.bits = decimalNumber;
+        }
+
+        /// <summary>
+        /// Constructor for the Bin class
+        /// </summary>
         /// <param name="binaryCode">The binary code (1s and 0s) that will be interpreted</param>
         public Bin(string binaryCode)
         {
+            if (binaryCode.Length > 63)
+                throw new OverflowException("The binary code is too big");
+          
+            if (Bin.IsBinary(binaryCode))
+                this.bits = Bin.ParseToDecimal(binaryCode);
+            else
+                throw new ArgumentException("The Bin class constructor requires a string of 1s and 0s or an long");
+        }
+
+        /// <summary>
+        /// Constructor for the Bin class
+        /// </summary>
+        public Bin()
+        {
+            this.bits = 0;
+        }
+
+        static public explicit operator byte(Bin bin)
+        {
+            return (byte)bin.bits;
+        }
+
+        static public explicit operator short(Bin bin)
+        {
+            return (short)bin.bits;
+        }
+
+        static public explicit operator int(Bin bin)
+        {
+            return (int)bin.bits;
+        }
+
+        static public explicit operator long(Bin bin)
+        {
+            return (long)bin.bits;
+        }
+
+        /// <summary>
+        /// Check if a string format is correct for binaries
+        /// </summary>
+        /// <param name="binaryCode">The string to be checked</param>
+        /// <returns>Returns true if it's a binary string</returns>
+        private static bool IsBinary(string binaryCode)
+        {
             bool ok = true;
-            for (int i = 0; i < binaryCode.Length&&ok;i++ )
+            for (int i = 0; i < binaryCode.Length && ok; i++)
             {
                 ok = false;
                 if (binaryCode[i] == '0' || binaryCode[i] == '1')
                     ok = true;
             }
-            if (ok)
-                this.bits = int.Parse(binaryCode).ToDecimal();
-            else
-                throw new ArgumentException("The Bin class constructor requires a string of 1s and 0s or an int");
+            return ok;
+        }
+
+        /// <summary>
+        /// Converts an string Binary number to a long decimal one
+        /// </summary>
+        /// <param name="bin">The Binary number to convert</param>
+        /// <returns>Returns the long Decimal number(the converted Decimal one)</returns>
+
+        private static long ParseToDecimal(string bin)
+        {
+            long summ = 0;
+            for (int i = bin.Length - 1; i >= 0; i--)
+                summ += (bin[i] == '1') ? (long)Math.Pow(2, bin.ToString().Length - 1 - i) : 0;
+            return summ;
+        }
+
+        /// <summary>
+        /// Converts an long Decimal number to a string Binary one
+        /// </summary>
+        /// <param name="dec">The Decimal number to convert</param>
+        /// <returns>Returns the long Binary number(the converted Decimal one)</returns>
+        private static string ConvertToBinary(long dec)
+        {
+            string s = "";
+            while (dec != 0)
+            {
+                s += (dec % 2).ToString();
+                dec /= 2;
+            }
+            return s.Reverse();
         }
 
         /// <summary>
@@ -52,17 +156,7 @@ namespace NSUtils
         /// <returns>Returns the string of the binary code</returns>
         public override string ToString()
         {
-            return this.bits.ToBinary().ToString();
-        }
-
-        /// <summary>
-        /// Allows the cast binary-int
-        /// </summary>
-        /// <param name="bin">The Bin instance to be converted</param>
-        /// <returns>Returns an int containing the binary code</returns>
-        public static int ToInt(Bin bin)
-        {
-            return bin.bits.ToBinary();
+            return Bin.ConvertToBinary(this.bits);
         }
 
         /// <summary>
@@ -70,7 +164,7 @@ namespace NSUtils
         /// </summary>
         static public Bin operator +(Bin bin1, Bin bin2)
         {
-            return new Bin(Bin.ToInt(bin1).ToDecimal() + Bin.ToInt(bin2).ToDecimal());
+            return new Bin((long)bin1 + (long)bin2);
         }
 
         /// <summary>
@@ -78,23 +172,23 @@ namespace NSUtils
         /// </summary>
         static public Bin operator *(Bin bin1, Bin bin2)
         {
-            return new Bin(Bin.ToInt(bin1).ToDecimal() * Bin.ToInt(bin2).ToDecimal());
+            return new Bin((long)bin1 * (long)bin2);
         }
 
         /// <summary>
-        /// Allows the division of 2 or more Bin objects(No floating point)
+        /// Allows the division of 2 or more Bin objects(No floating poInt32)
         /// </summary>
         static public Bin operator /(Bin bin1, Bin bin2)
         {
-            return new Bin(Bin.ToInt(bin1).ToDecimal() / Bin.ToInt(bin2).ToDecimal());
+            return new Bin((long)bin1 / (long)bin2);
         }
 
         /// <summary>
-        /// Allows the product of 2 or more Bin objects
+        /// Allows the subtraction between one Bin object and one decimal
         /// </summary>
         static public Bin operator -(Bin bin1, Bin bin2)
         {
-            return new Bin(Bin.ToInt(bin1).ToDecimal() - Bin.ToInt(bin2).ToDecimal());
+            return new Bin((long)bin1 - (long)bin2);
         }
 
         /// <summary>
@@ -116,85 +210,6 @@ namespace NSUtils
         {
             return this.bits.GetHashCode();
         }
-
-        /// <summary>
-        /// Checks if two Bin objects are equals
-        /// </summary>
-        static public bool operator ==(Bin bin1, Bin bin2)
-        {
-            return Bin.ToInt(bin1) == Bin.ToInt(bin2);
-        }
-
-        /// <summary>
-        /// Checks if two Bin objects aren't equals
-        /// </summary>
-        static public bool operator !=(Bin bin1, Bin bin2)
-        {
-            return Bin.ToInt(bin1) != Bin.ToInt(bin2);
-        }
-
-        /// <summary>
-        /// Checks if one Bin is greater than a second one
-        /// </summary>
-        static public bool operator >(Bin bin1, Bin bin2)
-        {
-            return Bin.ToInt(bin1) > Bin.ToInt(bin2);
-        }
-
-        /// <summary>
-        /// Checks if one Bin is greater or equal to a second one
-        /// </summary>
-        static public bool operator >=(Bin bin1, Bin bin2)
-        {
-            return Bin.ToInt(bin1) >= Bin.ToInt(bin2);
-        }
-
-        /// <summary>
-        /// Checks if one Bin is greater than a second one
-        /// </summary>
-        static public bool operator <(Bin bin1, Bin bin2)
-        {
-            return Bin.ToInt(bin1) < Bin.ToInt(bin2);
-        }
-
-        /// <summary>
-        /// Checks if one Bin is lower or equal to a second one
-        /// </summary>
-        static public bool operator <=(Bin bin1, Bin bin2)
-        {
-            return Bin.ToInt(bin1) <= Bin.ToInt(bin2);
-        }
-    }
-
-    public static class Convert
-    {
-        /// <summary>
-        /// Converts an int Decimal number to a Binary decimal one
-        /// </summary>
-        /// <param name="dec">The Decimal number to convert</param>
-        /// <returns>Returns the int Binary number(the converted Decimal one)</returns>
-        public static int ToBinary(this int dec)
-        {
-            string s = "";
-            while(dec != 0)
-            {
-                s += (dec % 2).ToString();
-                dec/=2;
-            }
-            return int.Parse(s.Reverse());
-        }
-
-        /// <summary>
-        /// Converts an int Binary number to a Decimal decimal one
-        /// </summary>
-        /// <param name="bin">The Binary number to convert</param>
-        /// <returns>Returns the int Decimal number(the converted Decimal one)</returns>
-        public static int ToDecimal(this int bin)
-        {
-            int summ = 0;
-            for (int i = bin.ToString().Length - 1; i >= 0; i--)
-                summ += (bin.ToString()[i] == '1') ? (int)Math.Pow(2, bin.ToString().Length - 1 - i) : 0;
-            return summ;
-        }
     }
 }
+
