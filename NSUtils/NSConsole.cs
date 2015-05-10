@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace NSUtils
 {
@@ -40,7 +41,12 @@ namespace NSUtils
         /// <returns></returns>
         public static string ReadLine()
         {
-            return ReadLine("");
+            Stream input = Console.OpenStandardInput(16383);
+            byte[] bytes = new byte[16383];
+            int length = input.Read(bytes, 0, 16383);
+            char[] c = Encoding.UTF8.GetChars(bytes, 0, length);
+            Array.Resize(ref c, c.Length - 2);
+            return new String(c);
         }
 
         /// <summary>
@@ -51,7 +57,7 @@ namespace NSUtils
         public static string ReadLine(string prompt)
         {
             Console.Write(prompt);
-            return Console.ReadLine();
+            return NSConsole.ReadLine();
         }
     }
 }

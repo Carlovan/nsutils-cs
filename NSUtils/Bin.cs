@@ -18,7 +18,43 @@ namespace NSUtils
         /// <summary>
         /// Constructor for the Bin class
         /// </summary>
-        /// <param name="decimalNumber">The decimal number inserted that will be converted automatically Int32o a binary one</param>
+        /// <param name="decimalNumber">The decimal number inserted that will be converted automatically into a binary one</param>
+        public Bin(byte decimalNumber)
+        {
+            this.bits = decimalNumber;
+        }
+
+        /// <summary>
+        /// Constructor for the Bin class
+        /// </summary>
+        /// <param name="decimalNumber">The decimal number inserted that will be converted automatically into a binary one</param>
+        public Bin(char decimalNumber)
+        {
+            this.bits = decimalNumber;
+        }
+
+        /// <summary>
+        /// Constructor for the Bin class
+        /// </summary>
+        /// <param name="decimalNumber">The decimal number inserted that will be converted automatically into a binary one</param>
+        public Bin(short decimalNumber)
+        {
+            this.bits = decimalNumber;
+        }
+
+        /// <summary>
+        /// Constructor for the Bin class
+        /// </summary>
+        /// <param name="decimalNumber">The decimal number inserted that will be converted automatically into a binary one</param>
+        public Bin(int decimalNumber)
+        {
+            this.bits = decimalNumber;
+        }
+
+        /// <summary>
+        /// Constructor for the Bin class
+        /// </summary>
+        /// <param name="decimalNumber">The decimal number inserted that will be converted automatically into a binary one</param>
         public Bin(long decimalNumber)
         {
             this.bits = decimalNumber;
@@ -27,7 +63,7 @@ namespace NSUtils
         /// <summary>
         /// Constructor for the Bin class
         /// </summary>
-        /// <param name="binaryCode">The binary code (1s and 0s) that will be Int32erpreted</param>
+        /// <param name="binaryCode">The binary code (1s and 0s) that will be interpreted</param>
         public Bin(string binaryCode)
         {
             if (binaryCode.Length > 63)
@@ -46,7 +82,27 @@ namespace NSUtils
         {
             this.bits = 0;
         }
-        
+
+        static public explicit operator byte(Bin bin)
+        {
+            return (byte)bin.bits;
+        }
+
+        static public explicit operator short(Bin bin)
+        {
+            return (short)bin.bits;
+        }
+
+        static public explicit operator int(Bin bin)
+        {
+            return (int)bin.bits;
+        }
+
+        static public explicit operator long(Bin bin)
+        {
+            return (long)bin.bits;
+        }
+
         /// <summary>
         /// Check if a string format is correct for binaries
         /// </summary>
@@ -69,6 +125,7 @@ namespace NSUtils
         /// </summary>
         /// <param name="bin">The Binary number to convert</param>
         /// <returns>Returns the long Decimal number(the converted Decimal one)</returns>
+
         private static long ParseToDecimal(string bin)
         {
             long summ = 0;
@@ -103,57 +160,11 @@ namespace NSUtils
         }
 
         /// <summary>
-        /// Allows the cast binary-long
-        /// </summary>
-        /// <param name="bin">The Bin instance to be converted</param>
-        /// <returns>Returns an long containing the binary code</returns>
-        public static long ToInt(Bin bin)
-        {
-            return bin.bits;
-        }
-
-        /// <summary>
         /// Allows the summ of 2 or more Bin objects
         /// </summary>
         static public Bin operator +(Bin bin1, Bin bin2)
         {
-            return new Bin(Bin.ToInt(bin1) + Bin.ToInt(bin2));
-        }
-
-        /// <summary>
-        /// Allows the summ of one Bin and one Int object
-        /// </summary>
-        static public Bin operator +(Bin bin, long dec)
-        {
-            return new Bin(Bin.ToInt(bin) + dec);
-        }
-
-        /// <summary>
-        /// Allows the summ of one Bin and one Int object
-        /// </summary>
-        static public Bin operator +(long dec, Bin bin)
-        {
-            return new Bin(Bin.ToInt(bin)+ dec);
-        }
-
-        /// <summary>
-        /// Allows the summ of one Bin and one String object
-        /// </summary>
-        static public Bin operator +(Bin bin1, string bin2)
-        {
-            if (!Bin.IsBinary(bin2))
-                throw new ArgumentException("The + operator can't add a non-binary string to Bin. Have you tried to concatenate them? If so, you should use .ToString");
-             return new Bin(Bin.ToInt(bin1) + Bin.ToInt(new Bin(bin2)));
-        }
-
-        /// <summary>
-        /// Allows the summ of one Bin and one String object
-        /// </summary>
-        static public Bin operator +(string bin2, Bin bin1)
-        {
-            if (!Bin.IsBinary(bin2))
-                throw new ArgumentException("The + operator can't add a non-binary string to Bin. Have you tried to concatenate them? If so, you should use .ToString");
-            return new Bin(Bin.ToInt(bin1) + Bin.ToInt(new Bin(bin2)));
+            return new Bin((long)bin1 + (long)bin2);
         }
 
         /// <summary>
@@ -161,42 +172,7 @@ namespace NSUtils
         /// </summary>
         static public Bin operator *(Bin bin1, Bin bin2)
         {
-            return new Bin(Bin.ToInt(bin1) * Bin.ToInt(bin2));
-        }
-        /// <summary>
-        /// Allows the summ of one Bin and one Int object
-        /// </summary>
-        static public Bin operator *(Bin bin, long dec)
-        {
-            return new Bin(Bin.ToInt(bin) * dec);
-        }
-
-        /// <summary>
-        /// Allows the summ of one Bin and one Int object
-        /// </summary>
-        static public Bin operator *(long dec, Bin bin)
-        {
-            return new Bin(Bin.ToInt(bin) * dec);
-        }
-
-        /// <summary>
-        /// Allows the summ of one Bin and one String object
-        /// </summary>
-        static public Bin operator *(Bin bin1, string bin2)
-        {
-            if (!Bin.IsBinary(bin2))
-                throw new ArgumentException("The * operator can't multiply a non-binary string and a Bin. Have you tried to concatenate them? If so, you should use .ToString");
-            return new Bin(Bin.ToInt(bin1) * Bin.ToInt(new Bin(bin2)));
-        }
-
-        /// <summary>
-        /// Allows the summ of one Bin and one String object
-        /// </summary>
-        static public Bin operator *(string bin2, Bin bin1)
-        {
-            if (!Bin.IsBinary(bin2))
-                throw new ArgumentException("The * operator can't add a non-binary string and a Bin. Have you tried to concatenate them? If so, you should use .ToString");
-            return new Bin(Bin.ToInt(bin1) * Bin.ToInt(new Bin(bin2)));
+            return new Bin((long)bin1 * (long)bin2);
         }
 
         /// <summary>
@@ -204,79 +180,15 @@ namespace NSUtils
         /// </summary>
         static public Bin operator /(Bin bin1, Bin bin2)
         {
-            return new Bin(Bin.ToInt(bin1) / Bin.ToInt(bin2));
-        }
-
-        /// <summary>
-        /// Allows the division of one Bin object and one decimal(No floating point) 
-        /// </summary>
-        static public Bin operator /(long dec, Bin bin)
-        {
-            return new Bin(dec / Bin.ToInt(bin));
-        }
-
-        /// <summary>
-        /// Allows the division of one Bin object and one decimal(No floating point)
-        /// </summary>
-        static public Bin operator /(Bin bin, long dec)
-        {
-            return new Bin(Bin.ToInt(bin) / dec);
-        }
-
-        /// <summary>
-        /// Allows the division of one Bin and one String object
-        /// </summary>
-        static public Bin operator /(string bin2, Bin bin1)
-        {
-            if (!Bin.IsBinary(bin2))
-                throw new ArgumentException("The / operator can't divide a non-binary string with a Bin. Have you tried to concatenate them? If so, you should use .ToString");
-            return new Bin(Bin.ToInt(bin1) / Bin.ToInt(new Bin(bin2)));
-        }
-
-        /// <summary>
-        /// Allows the division of one Bin and one String object
-        /// </summary>
-        static public Bin operator /(Bin bin1, string bin2)
-        {
-            if (!Bin.IsBinary(bin2))
-                throw new ArgumentException("The / operator can't divide a non-binary a Bin with a non-binary string. Have you tried to concatenate them? If so, you should use .ToString");
-            return new Bin(Bin.ToInt(bin1) / Bin.ToInt(new Bin(bin2)));
+            return new Bin((long)bin1 / (long)bin2);
         }
 
         /// <summary>
         /// Allows the subtraction between one Bin object and one decimal
         /// </summary>
-        static public Bin operator -(long dec, Bin bin)
+        static public Bin operator -(Bin bin1, Bin bin2)
         {
-            return new Bin(dec - Bin.ToInt(bin));
-        }
-
-        /// <summary>
-        /// Allows the subtraction between one Bin object and one decimal
-        /// </summary>
-        static public Bin operator -(Bin bin1, long dec)
-        {
-            return new Bin(Bin.ToInt(bin1) - dec);
-        }
-
-        /// <summary>
-        /// Allows the subtraction between one Bin and one String object
-        /// </summary>
-        static public Bin operator -(string bin2, Bin bin1)
-        {
-            if (!Bin.IsBinary(bin2))
-                throw new ArgumentException("The - operator can't subtract a non-binary string from a Bin. Have you tried to concatenate them? If so, you should use .ToString");
-            return new Bin(Bin.ToInt(bin1) - Bin.ToInt(new Bin(bin2)));
-        }
-
-        /// <summary>
-        /// Allows the subtraction between one Bin and one String object
-        /// </summary>
-        static public Bin operator -(Bin bin1, string bin2)
-        {
-            if (!Bin.IsBinary(bin2))
-                throw new ArgumentException("The - operator can't divide a non-binary a Bin with a non-binary string. Have you tried to concatenate them? If so, you should use .ToString");
-            return new Bin(Bin.ToInt(bin1) - Bin.ToInt(new Bin(bin2)));
+            return new Bin((long)bin1 - (long)bin2);
         }
 
         /// <summary>
@@ -297,54 +209,6 @@ namespace NSUtils
         public override int GetHashCode()
         {
             return this.bits.GetHashCode();
-        }
-
-        /// <summary>
-        /// Checks if two Bin objects are equals
-        /// </summary>
-        static public bool operator ==(Bin bin1, Bin bin2)
-        {
-            return Bin.ToInt(bin1) == Bin.ToInt(bin2);
-        }
-
-        /// <summary>
-        /// Checks if two Bin objects aren't equals
-        /// </summary>
-        static public bool operator !=(Bin bin1, Bin bin2)
-        {
-            return Bin.ToInt(bin1) != Bin.ToInt(bin2);
-        }
-
-        /// <summary>
-        /// Checks if one Bin is greater than a second one
-        /// </summary>
-        static public bool operator >(Bin bin1, Bin bin2)
-        {
-            return Bin.ToInt(bin1) > Bin.ToInt(bin2);
-        }
-
-        /// <summary>
-        /// Checks if one Bin is greater or equal to a second one
-        /// </summary>
-        static public bool operator >=(Bin bin1, Bin bin2)
-        {
-            return Bin.ToInt(bin1) >= Bin.ToInt(bin2);
-        }
-
-        /// <summary>
-        /// Checks if one Bin is greater than a second one
-        /// </summary>
-        static public bool operator <(Bin bin1, Bin bin2)
-        {
-            return Bin.ToInt(bin1) < Bin.ToInt(bin2);
-        }
-
-        /// <summary>
-        /// Checks if one Bin is lower or equal to a second one
-        /// </summary>
-        static public bool operator <=(Bin bin1, Bin bin2)
-        {
-            return Bin.ToInt(bin1) <= Bin.ToInt(bin2);
         }
     }
 }

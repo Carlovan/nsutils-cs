@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bin.cs" />
-    <Compile Include="Convert.cs" />
     <Compile Include="NSConsole.cs" />
     <Compile Include="NSMath.cs" />
     <Compile Include="NSString.cs" />
